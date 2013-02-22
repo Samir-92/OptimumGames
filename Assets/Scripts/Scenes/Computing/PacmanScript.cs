@@ -105,11 +105,13 @@ public class PacmanScript : MonoBehaviour
 			Application.Quit();	
 		}
 		
-		if(data == null)
+		foreach (GameObject g in data)
 		{
-			Application.LoadLevel(0);
+			if(g == null)
+			{
+				Application.LoadLevel(0);
+			}
 		}
-		
 		Keys();
 		
 		if(north==true)
