@@ -20,23 +20,13 @@ public class RPGScript : MonoBehaviour {
 		
 		currTime += Time.deltaTime;
 		
-		 if (GameObject.FindWithTag("Z") != null)
+		 if (GameObject.FindGameObjectsWithTag("Z") != null)
 		{
 			if (currTime > timeToSpawn)
 	        {
 	            Instantiate(bl,transform.position, transform.rotation);
 				currTime = 0.0f;
 			}
-		}
-		else{
-  
-		foreach(GameObject go in ig)
-		{
-   		 if(go.gameObject.active == false)
-				{
-					go.gameObject.active = true;
-				}
-		}
 		}
 	}
 }

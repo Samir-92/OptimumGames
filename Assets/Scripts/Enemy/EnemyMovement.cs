@@ -26,11 +26,6 @@ public class EnemyMovement : MonoBehaviour {
 		{
    		 Physics.IgnoreCollision(go.gameObject.collider, collider);
 		}
-		
-		foreach(GameObject go in ig)
-		{
-			startP = go.transform.localPosition;
-		}
 	}
 	// Update is called once per frame
 	void Update () {

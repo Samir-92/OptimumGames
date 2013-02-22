@@ -81,7 +81,7 @@ public class CameraScript : MonoBehaviour {
 					top = false;
 					move = false;
 					s=1;
-				Application.LoadLevel("ZTest");
+					Application.LoadLevel(2);
 				}
 			}
 			
@@ -91,9 +91,12 @@ public class CameraScript : MonoBehaviour {
 				yield return new WaitForSeconds(0.4f);
 				if(transform.localPosition == posC)
 				{
-				top = false;
-				move = false;
+					top = false;
+					move = false;
 					s=2;
+				
+				
+				    Application.LoadLevel(5);
 				}
 			}
 			
@@ -103,9 +106,11 @@ public class CameraScript : MonoBehaviour {
 				yield return new WaitForSeconds(0.4f);
 				if(transform.localPosition == posS)
 				{
-				top = false;
-				move = false;
+					top = false;
+					move = false;
 					s=3;
+				
+				    Application.LoadLevel(4);
 				}
 			}
 			
@@ -115,9 +120,11 @@ public class CameraScript : MonoBehaviour {
 				yield return new WaitForSeconds(0.4f);
 				if(transform.localPosition == posF)
 				{
-				top = false;
-				move = false;
+					top = false;
+					move = false;
 					s=4;
+				
+				    Application.LoadLevel(3);
 				}
 			}
 			
@@ -127,8 +134,8 @@ public class CameraScript : MonoBehaviour {
 				yield return new WaitForSeconds(0.4f);
 				if(transform.localPosition == pos1)
 				{
-				top = false;
-				move = false;
+					top = false;
+					move = false;
 					s=5;
 				}
 			}

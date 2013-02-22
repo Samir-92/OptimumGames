@@ -51,7 +51,17 @@
      <Compile Include="Assets\Scripts\Objects\RPGScript.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerMovementScript.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerScript.cs" />
+     <Compile Include="Assets\Scripts\Scenes\Computing\PacmanScript.cs" />
+     <Compile Include="Assets\Scripts\Scenes\EnemySpawner.cs" />
      <Compile Include="Assets\Scripts\Scenes\HomeScript.cs" />
+     <Compile Include="Assets\Scripts\Scenes\Maths\MathsScript.cs" />
+     <Compile Include="Assets\Scripts\Scenes\Science\PipeConnectorScript.cs" />
+     <Compile Include="Assets\Scripts\Scenes\Science\PipeScript.cs" />
+     <Compile Include="Assets\Scripts\Scenes\Science\WinScript.cs" />
+     <Compile Include="Assets\Scripts\Scenes\Sports\EndGameScript.cs" />
+     <Compile Include="Assets\Scripts\Scenes\Sports\Timer.cs" />
+     <Compile Include="Assets\Scripts\Scenes\Sports\competitor.cs" />
+     <Compile Include="Assets\Scripts\Scenes\ZScript.cs" />
      <None Include="Assets\Standard Assets\Particles\Sources\Shaders\Particle Alpha Blend (Queue +100).shader" />
      <None Include="Assets\Standard Assets\Skyboxes\_skybox info.txt" />
      <None Include="Assets\Standard Assets\Water (Basic)\Sources\Shaders\FX-Water Simple.shader" />
