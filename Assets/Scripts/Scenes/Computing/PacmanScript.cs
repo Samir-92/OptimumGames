@@ -30,10 +30,11 @@ public class PacmanScript : MonoBehaviour
 	public int killScore= 50;
 	
 	public GameObject[] data;
-	
+	int done;
 	void Start () 
 	{
 		data = GameObject.FindGameObjectsWithTag("Data");
+		done = data.Length;
 	}
 	
 	void Keys()
@@ -105,13 +106,11 @@ public class PacmanScript : MonoBehaviour
 			Application.Quit();	
 		}
 		
-		foreach (GameObject g in data)
-		{
-			if(g == null)
+		
+			if(done == 0)
 			{
 				Application.LoadLevel(0);
 			}
-		}
 		Keys();
 		
 		if(north==true)
@@ -196,6 +195,7 @@ public class PacmanScript : MonoBehaviour
 		
 		if(hut.gameObject.tag =="Data")
 		{
+			done--;
 			Destroy(hut.gameObject);
 			AddScore(dataScore);
 		}

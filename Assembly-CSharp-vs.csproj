@@ -52,9 +52,10 @@
      <Compile Include="Assets\Scripts\Player\PlayerMovementScript.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerScript.cs" />
      <Compile Include="Assets\Scripts\Scenes\Computing\PacmanScript.cs" />
-     <Compile Include="Assets\Scripts\Scenes\EnemySpawner.cs" />
      <Compile Include="Assets\Scripts\Scenes\HomeScript.cs" />
+     <Compile Include="Assets\Scripts\Scenes\Maths\EnemySpawner.cs" />
      <Compile Include="Assets\Scripts\Scenes\Maths\MathsScript.cs" />
+     <Compile Include="Assets\Scripts\Scenes\Maths\PlayerShoot.cs" />
      <Compile Include="Assets\Scripts\Scenes\Science\PipeConnectorScript.cs" />
      <Compile Include="Assets\Scripts\Scenes\Science\PipeScript.cs" />
      <Compile Include="Assets\Scripts\Scenes\Science\WinScript.cs" />
