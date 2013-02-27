@@ -81,7 +81,7 @@ public class CameraScript : MonoBehaviour {
 					top = false;
 					move = false;
 					s=1;
-					Application.LoadLevel(2);
+					Application.LoadLevel(4);
 				}
 			}
 			
@@ -110,7 +110,7 @@ public class CameraScript : MonoBehaviour {
 					move = false;
 					s=3;
 				
-				    Application.LoadLevel(4);
+				    Application.LoadLevel(2);
 				}
 			}
 			

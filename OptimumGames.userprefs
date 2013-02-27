@@ -1,13 +1,12 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Player/PlayerMovementScript.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Camera/CameraScript.cs">
     <Files>
-      <File FileName="Assets/Scripts/Player/PlayerMovementScript.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Scenes/HomeScript.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Player/PlayerScript.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Camera/CameraScript.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Scenes/Sports/EndGameScript.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Scenes/Computing/PacmanScript.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Player/PlayerMovementScript.cs" Line="108" Column="10" />
+      <File FileName="Assets/Scripts/Scenes/Sports/competitor.cs" Line="44" Column="2" />
+      <File FileName="Assets/Scripts/Scenes/HomeScript.cs" Line="46" Column="3" />
+      <File FileName="Assets/Scripts/Player/PlayerScript.cs" Line="7" Column="2" />
+      <File FileName="Assets/Scripts/Camera/CameraScript.cs" Line="106" Column="27" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -25,6 +25,11 @@ public class PlayerMovementScript : MonoBehaviour {
         {
             controller = gameObject.AddComponent<CharacterController>();
         }
+		
+		 if (!animation)
+        {
+            Debug.Log("None");
+        }
     }
 
     void FixedUpdate()
@@ -66,6 +71,8 @@ public class PlayerMovementScript : MonoBehaviour {
     {
         if (controller.isGrounded)
         {
+			Transform child = transform.Find("Brian Walk"); 
+			
             moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
             moveDirection *= speed;
 			
@@ -82,11 +89,22 @@ public class PlayerMovementScript : MonoBehaviour {
             {
                 moveDirection *= sprintSpeed;
             }
-
+			
             if (Input.GetKey("space"))
             {
                 moveDirection.y = jumpSpeed;
             }
+			
+			if(Input.GetAxis("Horizontal") > 0 || Input.GetAxis("Horizontal") < 0
+			   || Input.GetAxis("Vertical") > 0 || Input.GetAxis("Vertical") < 0)
+			{
+			child.animation.Play( "Take 001" );
+			}
+			else{
+				child.animation.Stop();
+			}
+			
+			
         }
 		
 			dir = Vector3.zero;	
