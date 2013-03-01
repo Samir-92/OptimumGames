@@ -74,7 +74,7 @@ public class MathsScript : MonoBehaviour {
 		}
 
 	}
-	
+	//
 	void Update () 
 	{
 		CheckAnswer();
