@@ -57,6 +57,7 @@ public class PacmanScript : MonoBehaviour
 			east=false;
 			west=false;
 			transform.localPosition = startPos;
+		    transform.Translate(new Vector3(0,0,0));
 		}
 		else if(lives <= 0)
 		{
@@ -93,21 +94,30 @@ public class PacmanScript : MonoBehaviour
 		
 		if(north==true)
 		{
-			transform.Translate(transform.forward*playerSpeed*Time.deltaTime);
+			transform.rotation = Quaternion.Euler(0,0,0);
+			transform.Translate(new Vector3(0,0,1)*playerSpeed*Time.deltaTime);
 		}
-		if(south==true)
-		{
-			transform.Translate(new Vector3(0,0,-1)*playerSpeed*Time.deltaTime);
+		else if(south==true)
+		{	
+			transform.rotation = Quaternion.Euler(0,180,0);
+			transform.Translate(new Vector3(0,0,1)*playerSpeed*Time.deltaTime);
 		}
-		if(east==true)
+		else if(east==true)
 		{
-			transform.Translate(transform.right*playerSpeed*Time.deltaTime);
+			transform.rotation = Quaternion.Euler(0,90,0);
+			transform.Translate(new Vector3(0,0,1)*playerSpeed*Time.deltaTime);
 		}
-		if(west==true)
-		{
-			transform.Translate(new Vector3(1,0,0)*playerSpeed*Time.deltaTime);
+		else if(west==true)
+		{	
+			transform.rotation = Quaternion.Euler(0,270,0);
+			transform.Translate(new Vector3(0,0,1)*playerSpeed*Time.deltaTime);
 		}	
-		
+		else
+		{
+			
+		transform.rigidbody.angularVelocity = Vector3.zero;
+		transform.rigidbody.velocity = Vector3.zero;
+		}
 		if(speedBoost==true)
 		{
 			speedTime-=Time.deltaTime;
@@ -142,6 +152,11 @@ public class PacmanScript : MonoBehaviour
 		{
 			child.animation.Stop();
 		}
+		
+		if(north == false || south == false || east == false || west == false)
+		{
+			transform.Translate(new Vector3(0,0,0));
+		}
 	}
 	
 	
@@ -153,7 +168,6 @@ public class PacmanScript : MonoBehaviour
 			south=false;
 			east=false;
 			west=false;
-			transform.rotation = Quaternion.Euler(0,0,0);
 		}
 		if(Input.GetKeyDown(KeyCode.DownArrow)||Input.GetKeyDown(KeyCode.S))
 		{
@@ -161,7 +175,6 @@ public class PacmanScript : MonoBehaviour
 			south=true;
 			east=false;
 			west=false;
-			transform.rotation = Quaternion.Euler(0,180,0);
 		}
 		if(Input.GetKeyDown(KeyCode.RightArrow)||Input.GetKeyDown(KeyCode.D))
 		{
@@ -169,7 +182,6 @@ public class PacmanScript : MonoBehaviour
 			south=false;
 			east=true;
 			west=false;
-			transform.rotation = Quaternion.Euler(0,90,0);
 		}
 		if(Input.GetKeyDown(KeyCode.LeftArrow)||Input.GetKeyDown(KeyCode.A))
 		{
@@ -177,7 +189,6 @@ public class PacmanScript : MonoBehaviour
 			south=false;
 			east=false;
 			west=true;
-			transform.rotation = Quaternion.Euler(0,270,0);
 		}
 	}
 	void OnCollisionEnter(Collision hit)
@@ -188,6 +199,20 @@ public class PacmanScript : MonoBehaviour
 			south=false;
 			east=false;
 			west=false;
+		
+			transform.Translate(new Vector3(0,0,0));
+		}
+	}
+	void OnCollisionStay(Collision hit)
+	{
+		if(hit.gameObject.tag =="Wall")
+		{
+			north=false;
+			south=false;
+			east=false;
+			west=false;
+		
+			transform.Translate(new Vector3(0,0,0));
 		}
 	}
 	
@@ -224,8 +249,6 @@ public class PacmanScript : MonoBehaviour
 			Destroy(hut.gameObject);
 			AddScore(dataScore);
 		}
-
-
 	}
 	
 	void SpeedBoost()
