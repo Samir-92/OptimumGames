@@ -31,43 +31,21 @@ public class PacmanScript : MonoBehaviour
 	
 	public GameObject[] data;
 	int done;
+	
+	Vector3 startPos;
 	void Start () 
 	{
 		data = GameObject.FindGameObjectsWithTag("Data");
 		done = data.Length;
+		 
+		if (!animation)
+        {
+            Debug.Log("None");
+        }
+		
+		startPos = transform.localPosition;
 	}
 	
-	void Keys()
-	{
-		if(Input.GetKeyDown(KeyCode.UpArrow)||Input.GetKeyDown(KeyCode.W))
-		{
-			north=true;
-			south=false;
-			east=false;
-			west=false;
-		}
-		if(Input.GetKeyDown(KeyCode.DownArrow)||Input.GetKeyDown(KeyCode.S))
-		{
-			north=false;
-			south=true;
-			east=false;
-			west=false;
-		}
-		if(Input.GetKeyDown(KeyCode.RightArrow)||Input.GetKeyDown(KeyCode.D))
-		{
-			north=false;
-			south=false;
-			east=true;
-			west=false;
-		}
-		if(Input.GetKeyDown(KeyCode.LeftArrow)||Input.GetKeyDown(KeyCode.A))
-		{
-			north=false;
-			south=false;
-			east=false;
-			west=true;
-		}
-	}
 	
 	void Spawn ()
 	{
@@ -78,7 +56,7 @@ public class PacmanScript : MonoBehaviour
 			south=false;
 			east=false;
 			west=false;
-			transform.localPosition = new Vector3(0,0,0);
+			transform.localPosition = startPos;
 		}
 		else if(lives <= 0)
 		{
@@ -106,28 +84,28 @@ public class PacmanScript : MonoBehaviour
 			Application.Quit();	
 		}
 		
+		if(done == 0)
+		{
+			Application.LoadLevel(0);
+		}
 		
-			if(done == 0)
-			{
-				Application.LoadLevel(0);
-			}
 		Keys();
 		
 		if(north==true)
 		{
-			transform.Translate(new Vector3(0,0,1.0f)*playerSpeed*Time.deltaTime);
+			transform.Translate(transform.forward*playerSpeed*Time.deltaTime);
 		}
 		if(south==true)
 		{
-			transform.Translate(new Vector3(0,0,-1.0f)*playerSpeed*Time.deltaTime);
+			transform.Translate(new Vector3(0,0,-1)*playerSpeed*Time.deltaTime);
 		}
 		if(east==true)
 		{
-			transform.Translate(new Vector3(1.0f,0,0)*playerSpeed*Time.deltaTime);
+			transform.Translate(transform.right*playerSpeed*Time.deltaTime);
 		}
 		if(west==true)
 		{
-			transform.Translate(new Vector3(-1.0f,0,0)*playerSpeed*Time.deltaTime);
+			transform.Translate(new Vector3(1,0,0)*playerSpeed*Time.deltaTime);
 		}	
 		
 		if(speedBoost==true)
@@ -153,8 +131,55 @@ public class PacmanScript : MonoBehaviour
 				powerBoost=false;	
 			}	
 		}
+		
+		Transform child = transform.Find("Brian Walk"); 
+			
+		if(north == true || west == true || south == true || east == true)
+		{
+			child.animation.Play( "Take 001" );
+		}
+		else
+		{
+			child.animation.Stop();
+		}
 	}
 	
+	
+	void Keys()
+	{
+		if(Input.GetKeyDown(KeyCode.UpArrow)||Input.GetKeyDown(KeyCode.W))
+		{
+			north=true;
+			south=false;
+			east=false;
+			west=false;
+			transform.rotation = Quaternion.Euler(0,0,0);
+		}
+		if(Input.GetKeyDown(KeyCode.DownArrow)||Input.GetKeyDown(KeyCode.S))
+		{
+			north=false;
+			south=true;
+			east=false;
+			west=false;
+			transform.rotation = Quaternion.Euler(0,180,0);
+		}
+		if(Input.GetKeyDown(KeyCode.RightArrow)||Input.GetKeyDown(KeyCode.D))
+		{
+			north=false;
+			south=false;
+			east=true;
+			west=false;
+			transform.rotation = Quaternion.Euler(0,90,0);
+		}
+		if(Input.GetKeyDown(KeyCode.LeftArrow)||Input.GetKeyDown(KeyCode.A))
+		{
+			north=false;
+			south=false;
+			east=false;
+			west=true;
+			transform.rotation = Quaternion.Euler(0,270,0);
+		}
+	}
 	void OnCollisionEnter(Collision hit)
 	{
 		if(hit.gameObject.tag =="Wall")
