@@ -25,12 +25,14 @@ public class MathsScript : MonoBehaviour {
 	
 	public string input = "";
 	
+	public int countQ=0;
+	
 	public Transform pos;
 	public Transform pos2;
 	public Transform pos3;
 	public Transform pos4;
 	public Transform pos5;
-	
+		
 	public Vector3 Screenpos;
 	public Vector3 Screenpos2;
 	public Vector3 Screenpos3;
@@ -45,34 +47,37 @@ public class MathsScript : MonoBehaviour {
 	
 	void Start () 
 	{
-		number1=Random.Range(1,9);
-		number2=Random.Range(0,9);
-		
-		answer=number1+number2;
-		
-		number3=Random.Range(1,9);
-		number4=Random.Range(0,9);
-		
-		answer2=number3+number4;
-		
-		number5=Random.Range(1,9);
-		number6=Random.Range(0,9);
-		
-		answer3=number5+number6;
-		
-		number7=Random.Range(1,9);
-		number8=Random.Range(0,9);
-		
-		answer4=number7+number8;
-		
-		number9=Random.Range(1,9);
-		number10=Random.Range(0,9);
-		
-		answer5=number9+number10;
+		CreateQ1();
+		CreateQ2();
+		CreateQ3();
+		CreateQ4();
+		CreateQ5();
+	}
+	
+	void CheckAnswer()
+	{
+		if (answer2==answer)
+		{
+			CreateQ2();	
+		}
+		if (answer3==answer || answer3 ==answer2)
+		{
+			CreateQ3();	
+		}
+		if (answer4==answer || answer4 ==answer2 || answer4==answer3)
+		{
+			CreateQ4();	
+		}
+		if (answer5==answer || answer5 ==answer2 || answer5==answer3 || answer5==answer4)
+		{
+			CreateQ5();	
+		}
+
 	}
 	
 	void Update () 
 	{
+		CheckAnswer();
 		if(Input.inputString!=null)
 		{
 			int a;
@@ -85,30 +90,45 @@ public class MathsScript : MonoBehaviour {
 		if(input==answer.ToString())
 		{
 			pos.active=false;
-			input="";		
+			input="";	
+			countQ++;	
+			answer=-1000;
 		}	
 		else if (input==answer2.ToString())
 		{
 			pos2.active=false;
 			input="";		
+			countQ++;	
+			answer2=-1000;
 		}	
 		else if(input==answer3.ToString())
 		{
 			pos3.active=false;
-			input="";		
+			input="";
+			countQ++;	
+			answer3=-1000;	
 		}	
 		else if (input==answer4.ToString())
 		{
 			pos4.active=false;
-			input="";		
+			input="";	
+			countQ++;	
+			answer4=-1000;	
 		}	
 		else if (input==answer5.ToString())
 		{
 			pos5.active=false;
-			input="";		
+			input="";	
+			countQ++;
+			answer5=-1000;		
 		}	
 		
-		if(Input.GetMouseButtonDown(0))
+		if (countQ >= 5)
+		{
+			Application.LoadLevel(0);
+		}
+		
+		if(Input.GetMouseButtonDown(0)||Input.GetKeyDown("space"))
 		{
 			input="";
 		}
@@ -168,6 +188,50 @@ public class MathsScript : MonoBehaviour {
 		GUI.Label(new Rect(Screenpos4.x,Screen.height-Screenpos4.y,100,50),trueAnswer4);
 		if (pos5.active==true)
 		GUI.Label(new Rect(Screenpos5.x,Screen.height-Screenpos5.y,100,50),trueAnswer5);
-		GUI.Label(new Rect(10,60,100,50),input.ToString());
+		
+		GUI.Label(new Rect(Screen.width/2-25,(Screen.height/4)*3-5,100,50),input.ToString());
+		GUI.Label(new Rect(Screen.width/2-50,(Screen.height/4)*3+10,100,50),"Press space to clear");
+	}
+	
+	void CreateQ1()
+	{
+		number1=Random.Range(1,9);
+		number2=Random.Range(0,9);
+		
+		answer=number1+number2;
+	}
+	
+	void CreateQ2()
+	{
+		number3=Random.Range(1,9);
+		number4=Random.Range(0,9);
+		
+		answer2=number3+number4;
+
+	}
+	
+	void CreateQ3()
+	{
+		number5=Random.Range(1,9);
+		number6=Random.Range(0,9);
+		
+		answer3=number5+number6;
+	}
+	
+	void CreateQ4()
+	{
+		number7=Random.Range(1,9);
+		number8=Random.Range(0,9);
+		
+		answer4=number7+number8;
+
+	}
+	
+	void CreateQ5()
+	{
+		number9=Random.Range(1,9);
+		number10=Random.Range(0,9);
+		
+		answer5=number9+number10;
 	}
 }
