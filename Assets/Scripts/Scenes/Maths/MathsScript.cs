@@ -23,6 +23,8 @@ public class MathsScript : MonoBehaviour {
 	public int number10;
 	public int answer5;
 	
+	public int step=0;
+	
 	public string input = "";
 	public string display;
 	
@@ -56,6 +58,8 @@ public class MathsScript : MonoBehaviour {
 	
 	public GUIStyle chalk;
 	public GUIStyle digital;
+	public GUIStyle totalScore;
+	public GUIStyle warning;
 	
 	public bool q1 = false;
 	public bool q2 = false;
@@ -68,6 +72,7 @@ public class MathsScript : MonoBehaviour {
 	public float qEndTime=2;
 	public float qDangerTime=4;
 	public float qFailedTime=3;
+	public float timer=0;
 	
 	public float q1eTime = 0;
 	public float q1sTime = 0;
@@ -91,6 +96,13 @@ public class MathsScript : MonoBehaviour {
 	
 	public int score = 0;
 	public int correct = 10;
+	
+	public GameObject aScore;
+	public GameObject bScore;
+	public GameObject cScore;
+	public GameObject fScore;
+	
+	public GameObject[] clock = new GameObject[14];
 	
 	void Start () 
 	{
@@ -170,7 +182,7 @@ public class MathsScript : MonoBehaviour {
 			q1=false;
 			score+=correct;
 		}	
-		else if (input==answer2.ToString())
+		if (input==answer2.ToString())
 		{
 			pos2.active=false;
 			input="";		
@@ -179,7 +191,7 @@ public class MathsScript : MonoBehaviour {
 			q2=false;
 			score+=correct;
 		}	
-		else if(input==answer3.ToString())
+		if(input==answer3.ToString())
 		{
 			pos3.active=false;
 			input="";
@@ -188,7 +200,7 @@ public class MathsScript : MonoBehaviour {
 			q3=false;
 			score+=correct;
 		}	
-		else if (input==answer4.ToString())
+		if (input==answer4.ToString())
 		{
 			pos4.active=false;
 			input="";	
@@ -197,7 +209,7 @@ public class MathsScript : MonoBehaviour {
 			q4=false;
 			score+=correct;
 		}	
-		else if (input==answer5.ToString())
+		if (input==answer5.ToString())
 		{
 			pos5.active=false;
 			input="";	
@@ -333,6 +345,18 @@ public class MathsScript : MonoBehaviour {
 				}
 			}	
 		}
+		
+		float timeStep = endTime/14;
+		float timeElapsed = startTime;
+		
+		timer += Time.deltaTime;
+		if (timer > timeStep)
+		{
+			timer=0;
+			clock[step].active=false;
+			clock[step+1].active=true;
+			step++;	
+		}
 
 		
 		if(q1==false)
@@ -426,19 +450,24 @@ public class MathsScript : MonoBehaviour {
 		
 			GUI.Label(new Rect(Screen.width-200,Screen.height-130,100,50),display.ToString(),digital);
 			
-			GUI.Label(new Rect(Screen.width-150,100,100,50),score.ToString(),digital);
+			GUI.Label(new Rect(Screen.width-200,Screen.height/2,300,150),"Score",totalScore);
+			GUI.Label(new Rect(Screen.width-150,Screen.height/2+50,300,150),score.ToString(),totalScore);
+
+			GUI.Label(new Rect(Screen.width-250,Screen.height-270,250,50),"Press space to clear the calculator!",warning);
 		}
-		/*if (win.active==true)
+		if (win.active==true)
 		{
 			if (score < 50)
 			fScore.active=true;
-			if (50<= score <= 80)
+			if (score >= 50 && score <120)
 			cScore.active=true;
-			if (80 < score <= 120)	
+			if (score >= 120 && score < 200)	
 			bScore.active=true;
-			if  score > 120)
+			if  (score > 200)
 			aScore.active=true;	
-		}*/
+		}
+		
+		
 	}
 	
 	void CreateQ1()
