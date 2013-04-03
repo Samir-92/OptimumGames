@@ -6,7 +6,7 @@ public class PacmanScript : MonoBehaviour
 	
 	public float playerSpeed=4.0f;
 	private float endTime=0.0f;
-	public float gameStartTime=120;
+	public float gameStartTime=70;
 	private float gameEndTime=0;
 	
 	public float powerTime=4.0f;
@@ -22,12 +22,20 @@ public class PacmanScript : MonoBehaviour
 	private bool	speedBoost=false,
 				powerBoost=false;
 				
+	public bool showTime=true;
+				
 	public int lives=3;
 	public int score=0;
 
 	public int dataScore= 10;
 	public int deathScore= -25;
 	public int killScore= 50;
+	
+	public GameObject aScore;
+	public GameObject bScore;
+	public GameObject cScore;
+	public GameObject fScore;
+	public GameObject win;
 	
 	public GameObject[] data;
 	int done;
@@ -63,7 +71,8 @@ public class PacmanScript : MonoBehaviour
 		{
 			lives = 0;
 			//end game code
-			Application.LoadLevel(0);
+			//Application.LoadLevel(0);
+			EndGame();
 		}
 		lives--;
 		
@@ -76,18 +85,42 @@ public class PacmanScript : MonoBehaviour
 		}
 	}
 	
+	void EndGame()
+	{
+		win.active=true;
+		if (score < 200)
+			fScore.active=true;
+			if (score >= 200 && score <500)
+			cScore.active=true;
+			if (score >= 500 && score < 1000)	
+			bScore.active=true;
+			if  (score > 1000)
+			aScore.active=true;	
+			
+		
+		if(gameStartTime<-4)
+			{
+				Application.LoadLevel(0);	
+			}	
+			
+	
+	}
+	
 	void Update ()
 	{		
 		gameStartTime-=Time.deltaTime;
 		
 		if(gameStartTime<=gameEndTime)
 		{
-			Application.Quit();	
+			EndGame();
+			//Application.Quit();	
+			showTime=false;
 		}
 		
 		if(done == 0)
 		{
-			Application.LoadLevel(0);
+			EndGame();
+			//Application.LoadLevel(0);
 		}
 		
 		Keys();
@@ -271,7 +304,11 @@ public class PacmanScript : MonoBehaviour
 	{
 		GUI.Label(new Rect(Screen.width-100,0,100,50),"Score: " +score);
 		GUI.Label(new Rect(Screen.width-100,50,100,50),"Lives: " +lives);
-		GUI.Label(new Rect(Screen.width-100,20,100,50),"Time left: "+gameStartTime.ToString("f0"));
+		
+		if(showTime==true)
+		{
+			GUI.Label(new Rect(Screen.width-100,20,100,50),"Time left: "+gameStartTime.ToString("f0"));
+		}
 		
 		if(speedBoost==true)
 		{
