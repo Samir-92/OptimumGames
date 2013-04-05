@@ -7,6 +7,10 @@ public class PlayerMovementScript : MonoBehaviour {
     public float sprintSpeed = 2.5f;
     public float jumpSpeed = 4.0F;
     public float gravity = 10.0F;
+    
+    public GameObject winCamera;
+    public GameObject playCamera;
+    public GameObject win;
 	
 	Vector3 dir;
 	
@@ -16,6 +20,8 @@ public class PlayerMovementScript : MonoBehaviour {
     private Vector3 moveDirection = Vector3.zero;
     public bool walking = false;
     public bool run = false;
+    
+    public float startTime=0;
 
     // Use this for initialization
     void Start()
@@ -105,6 +111,7 @@ public class PlayerMovementScript : MonoBehaviour {
 			}
 			
 			
+			
         }
 		
 			dir = Vector3.zero;	
@@ -136,4 +143,4 @@ public class PlayerMovementScript : MonoBehaviour {
             walking = false;
         }
     }
-}
+ }

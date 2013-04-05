@@ -4,8 +4,9 @@ using System.Collections;
 public class Timer : MonoBehaviour {
 	
     public float timer;
-    float minutes;
-    float seconds ;
+    public float minutes;
+    public float seconds ;
+    public GUIStyle myStyle;
     
     // Use this for initialization
     void Start () {
@@ -26,6 +27,6 @@ public class Timer : MonoBehaviour {
    	 string niceTime = string.Format("{0:00}:{1:00}", minutes, seconds);
     
 		
-    	 GUI.Label(new Rect(10,10,250,100), niceTime);
+    	 GUI.Label(new Rect(10,10,250,100), niceTime, myStyle);
 	}
 }

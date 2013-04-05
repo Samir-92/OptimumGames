@@ -153,7 +153,7 @@ public class MathsScript : MonoBehaviour {
 		{
 			if(startTime>4)
 			{
-				Application.LoadLevel(0);	
+				Application.LoadLevel(1);	
 			}	
 		}
 		
@@ -457,14 +457,28 @@ public class MathsScript : MonoBehaviour {
 		}
 		if (win.active==true)
 		{
+			GameObject nd = GameObject.Find("NeverDie");
+			DontDie d = nd.GetComponent<DontDie>();
+
 			if (score < 50)
+			{
 			fScore.active=true;
+			}
 			if (score >= 50 && score <120)
+			{
 			cScore.active=true;
+			d.cscore++;
+			}
 			if (score >= 120 && score < 200)	
+			{
 			bScore.active=true;
+			d.cscore++;
+			}
 			if  (score > 200)
+			{
 			aScore.active=true;	
+			d.cscore++;
+			}
 		}
 		
 		

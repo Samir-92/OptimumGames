@@ -37,6 +37,8 @@ public class PacmanScript : MonoBehaviour
 	public GameObject fScore;
 	public GameObject win;
 	
+	public bool oneTime=true;
+	
 	public GameObject[] data;
 	int done;
 	
@@ -70,6 +72,8 @@ public class PacmanScript : MonoBehaviour
 		else if(lives <= 0)
 		{
 			lives = 0;
+			gameStartTime=0;
+			showTime=false;
 			//end game code
 			//Application.LoadLevel(0);
 			EndGame();
@@ -87,20 +91,51 @@ public class PacmanScript : MonoBehaviour
 	
 	void EndGame()
 	{
+		GameObject nd = GameObject.Find("NeverDie");
+		DontDie d = nd.GetComponent<DontDie>();
+		
 		win.active=true;
+		
 		if (score < 200)
+		{
 			fScore.active=true;
-			if (score >= 200 && score <500)
+		}
+		if (score >= 200 && score <500)
+		{
+			if(oneTime==true)
+			{
 			cScore.active=true;
+			d.ascore++;
+			oneTime=false;
+
+			}
+		}
 			if (score >= 500 && score < 1000)	
-			bScore.active=true;
+			{
+			if(oneTime==true)
+			{
+				bScore.active=true;
+				d.ascore++;
+				oneTime=false;
+			}
+			}
 			if  (score > 1000)
-			aScore.active=true;	
+			{
+			aScore.active=true;
+			if(oneTime==true)
+			{
+			d.ascore++;
+			oneTime=false;
+			}
+				}
 			
 		
 		if(gameStartTime<-4)
 			{
-				Application.LoadLevel(0);	
+				
+				
+				
+				Application.LoadLevel(1);	
 			}	
 			
 	
